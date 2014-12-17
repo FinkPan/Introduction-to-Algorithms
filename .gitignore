@@ -1,0 +1,13 @@
+.sw[a-z]
+.*.swp
+tags
+.DS_Store
+CMakeLists.txt.user
+
+.aux
+.bbl
+.blg
+.log
+.gz
+.bak
+.toc
