@@ -4,10 +4,10 @@ tags
 .DS_Store
 CMakeLists.txt.user
 
-.aux
-.bbl
-.blg
-.log
-.gz
-.bak
-.toc
+*.aux
+*.bbl
+*.blg
+*.log
+*.gz
+*.bak
+*.toc
