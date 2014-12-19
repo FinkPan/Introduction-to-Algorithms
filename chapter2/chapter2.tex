@@ -1,0 +1,38 @@
+\documentclass[12pt,a4paper]{article}
+%设置页面样式A4 8.3in x 11.7in
+\usepackage[body={7in,11in,nohead,nofoot}]{geometry}
+%用于生成书签
+%CJKbookmarks=true 编译的时候使用的中文支持还是CJK
+\usepackage[CJKbookmarks=true,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green]{hyperref}
+
+%中文字体支持
+\usepackage{CJK}
+
+\begin{document}
+\begin{CJK*}{GBK}{}
+\large
+\setcounter{section}{2}
+
+\section*{\LARGE 第二章\ 算法基础}
+
+\subsection{插入排序}
+\begin{enumerate} %//枚举题目
+\item
+\textbf{以图2-2为模型,说明INSERTION-SORT在数组A={31,41,59,26,41,58}上的执行过程}
+
+\item
+\textbf{重新过程INSERTION-SORT,使之按非升序(而不是非降序)排序}
+
+\end{enumerate}
+
+\subsection{分析算法}
+\begin{enumerate} %//枚举题目
+\item
+\textbf{用Θ记号表示函数 $n^3 \div 1000 - 100n^2 - 100n + 3$}
+
+\end{enumerate}
+
+\subsection{设计算法}
+
+\end{CJK*}
+\end{document}

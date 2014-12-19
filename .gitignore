@@ -11,3 +11,6 @@ CMakeLists.txt.user
 *.gz
 *.bak
 *.toc
+*.dvi
+*.out
+*.ps
