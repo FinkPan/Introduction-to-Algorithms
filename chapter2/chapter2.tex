@@ -5,6 +5,8 @@
 %CJKbookmarks=true 编译的时候使用的中文支持还是CJK
 \usepackage[CJKbookmarks=true,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green]{hyperref}
 
+\usepackage{clrscode} %插入代码
+
 %中文字体支持
 \usepackage{CJK}
 
@@ -19,20 +21,195 @@
 \begin{enumerate} %//枚举题目
 \item
 \textbf{以图2-2为模型,说明INSERTION-SORT在数组A={31,41,59,26,41,58}上的执行过程}
-
+\\答:\\
+\begin{tabular}{|l|l|l|l|l|l|1|}
+\hline
+序号:&1&2&3&4&5&6\\
+\hline
+   &31&41&59&26&41&58\\
+\hline
+   &31&41&59&26&41&58\\
+\hline
+   &26&31&41&59&41&58\\
+\hline   
+   &26&31&41&41&59&58\\
+\hline   
+   &26&31&41&41&58&59\\
+\hline   
+\end{tabular}
 \item
 \textbf{重新过程INSERTION-SORT,使之按非升序(而不是非降序)排序}
+\begin{codebox}
+\Procname{$\proc{Insertion-Sort(A)}$}
+\li \For $j \gets 2$ \To $\id{length}[A]$    \label{li:for}
+\li     \Do $\id{key} \gets A[j]$                \label{li:for-begin} 
+\li         $i = j-1$   
+\li         \While $i>0$ and $A[i]< \id{key}$ //将判断大于改为小于即可. \label{li:While}       
+\li             \Do $A[i+1] = A[i]$   \label{li:while-begin}
+\li             $i = i - 1$       \label{li:while-end}
+              \End
+\li      &A[i+1] = key$         \label{li:for-end}         
+         \End
+\end{codebox}
 
+\item
+\textbf{考虑以下查找问题:\\
+        输入: n个数的一个序列A=<a1,a2,...an>和一个值v\\
+        输出: 下标i使得v=A[i]或者当v不在A中出现时,v为特殊值NIL.\\
+        写出线性查找的伪代码,它扫描整个序列来查找v,使用一个循环不变式来\\
+        证明你的算法是正确的.确保你的循环不变试满足三条必要的性质.\\}
+答:
+\begin{codebox}
+\Procname{$\proc{FIND-V(A,v)}$}
+\li $i = 0$
+\li \While i $<$ A.length\ and\ A[i] \neq v \label{li:While} 
+\li     \qquad i += 1                           \label{li:While-begin} 
+\li     \qquad if i $<$ A.length
+\li     \qquad\qquad OUT\ i
+\li     \qquad else  
+\li     \qquad\qquad OUT\ NIL                         \label{li:While-end} 
+     \End
+\end{codebox}
+正确性:\\
+\hspace*{2 em}初始化:\\
+\hspace*{4 em} i $=$ 0, while 循环迭代前不变式成立,\\      
+\hspace*{2 em}保持:\\
+\hspace*{4 em} i 从 0 递增到A.length. 如果A[i] $=$ v,则循环体结束.\\
+\hspace*{2 em}终止:\\
+\hspace*{4 em} 退出循环后,判断i是否在A.length里,如果在,则输出i,否则i为NIL.
+
+\item
+\textbf{考虑把两个n位二进制整数加起来的问题,这两个整数分别存储在两个n元数组A
+      和B中,这两个整数的和应按二进制形式存储在一个(n$+$1)元数组C中,请给出该
+      问题的形式化描述,并写出伪代码.}\\
+答:\\
+\hspace*{2 em} 因为C为n+1位,故可以在C[n+1]存放A+B需要进位的数. 将C初始化为0,\\
+\hspace*{2 em} 当A+B+C大于2时,说明需要进位,故C[n+1]被置为1,而当前位为(A+B+C)\%2;\\
+\hspace*{2 em} 当A+B+C小于2时,说明不需要进位,当前位等于A+B
+\begin{codebox}
+\Procname{$\proc{SUM(A,B,C,n)}$}
+\li C[0 \to n+1] $=$ 0
+\li \For i $=$ 0 to n
+\li  \hspace*{1 em} \If A[i] + B[i] + C[i] $\leq$ 2  \ //需要进位
+\li  \hspace*{2 em}C[i] $=$ (A[i] + B[i] + C[i])\%2 \ //当前位取2的模
+\li  \hspace*{2 em}C[i+1] = 1;   //实现进位 
+\li         \Else
+\li  \hspace*{2 em}C[i] $=$ A[i] + B[i]; // 0 或 1
+      \End        
+\end{codebox}       
 \end{enumerate}
 
 \subsection{分析算法}
 \begin{enumerate} %//枚举题目
 \item
-\textbf{用Θ记号表示函数 $n^3 \div 1000 - 100n^2 - 100n + 3$}
+\textbf{用$\Theta$记号表示函数} $n^3 \div 1000 - 100n^2 - 100n + 3$\\
+答:\\
+\hspace*{2 em} $\Theta(n^3)$ 
 
+\item
+\textbf{考虑排序存储在数组A中的n个数:首先找出A中的最小元素并首先找
+出A中的最小元素并将其与A[1]中的元素进行交换.接着,找出A中的次最小元
+素并将其与A[2]中的元素进行交换.对A中前n-1个元素按该方式继续.该算法
+称为选择算法,写出其伪代码.该算法维持的循环不变式是什么?为什么它只需
+要对前n-1个元素,而不是对所有n个元素运行?用$\Theta$记号给出选择排序的最好情况
+与最坏情况运行时间.}\\
+答:
+\begin{codebox}
+\Procname{FUNC(A)}
+\li \For i $=$ 1 to A.length
+\li \hspace*{1 em}min $=$ i
+\li \hspace*{1 em}\For j $=$ i + 1 to A.length //寻找min
+\li \hspace*{2 em} \If A[j] $\leq$ A[min] 
+\li \hspace*{3 em}min $=$ j //更新min
+                  \End
+\li \hspace*{1 em}A[i]$=$A[min]
+    \End
+\end{codebox}      
+\newpage     
+\item 
+\textbf{再次考虑线性查找问题(参见练习2.1-3.假定要查找的元素等可能地为数组中的任意元素,平均需要检查输入序列的多少元素?最坏情况又如何?用$\Theta$记号给出线性查找的平均情况和最坏情况运行时间.证明你的答案.}\\
+答:\\
+\hspace*{1 em} 1.平均需要检查输入序列的n/2个元素\\
+\hspace*{1 em} 2.最坏需要查找n个元素\\
+\hspace*{1 em} 3.平均情况和最坏情况运行时间为$\Theta$(n)     
+
+\item
+\textbf{应如何修改任何一个算法,才能使之具有良好的最好情况运行时间?}\\
+答:\\
+\hspace*{1 em} 针对最大概率的输入定制优化一个算法，可获得最佳运行时间。 
 \end{enumerate}
 
 \subsection{设计算法}
+\begin{enumerate}
+\item
+\textbf{使用图2-4作为模型,说明归并排序在数组A$=$\{3,41,52,26,38,57,9,49\}上的操作;}\\
+答:\\
+      $\hspace*{12 em}\fbox{3,9,26,38,41,49,52,57}\\
+      \hspace*{13 em}\nearrow \hspace{4 em} \nwarrow\\
+      \hspace*{8 em}\fbox{ 3, 26, 41, 52} \hspace{3 em}\fbox{ 9, 38, 49, 57}\\
+      \hspace*{9 em}\nearrow \hspace{2 em} \nwarrow
+      \hspace{6 em}\nearrow \hspace{2 em} \nwarrow\\
+      \hspace*{6 em}\fbox{ 3, 41} \hspace{3 em}\fbox{26,52}
+      \hspace{2 em}\fbox{ 38, 57} \hspace{3 em}\fbox{9,49}\\
+      \hspace*{6 em}\nearrow \hspace{1 em} \nwarrow
+      \hspace{2.5 em}\nearrow \hspace{1 em} \nwarrow
+      \hspace{2.0 em}\nearrow \hspace{1 em} \nwarrow
+      \hspace{2.5 em}\nearrow \hspace{1 em} \nwarrow\\
+      \hspace*{5.5 em}\fbox{3}\hspace{2 em}\fbox{41}
+      \hspace{1 em}\fbox{52}\hspace{1.5 em}\fbox{26}
+      \hspace{1 em}\fbox{38}\hspace{1.5 em}\fbox{57}
+      \hspace{1 em}\fbox{9}\hspace{2 em}\fbox{49}$ 
+      
+\newpage  
+\item
+\textbf{重写过程MERGE,使之不使用哨兵,而是一旦数组L或R的有元素均被复制回A就立刻停止,然后把另一个数组的剩余部分复制回A}\\
+答:
+\begin{codebox}
+\Procname{MERGE(A,p,q,r)}
+\li n1 = q - p + 1
+\li n2 = r - q
+\li let L[1 $\to$ n1+1] and R[1 $\to$ n2+1] be new arrays
+\li for i = 1 to n1
+\li \hspace*{1 em}L[i] = A[p+i-1]
+\li for j = 1 to n2
+\li \hspace*{1 em}R[j] = A[q+j]
+\li i = 1; \ j = 1;\ k = p
+\li while i $\leq$ n1 and j $\leq$ n2 
+\li \hspace*{1 em} if L[i] $\leq$ R[j]
+\li \hspace*{2 em}  A[k] = L[i]
+\li \hspace*{2 em}  i += 1
+\li \hspace*{1 em} else
+\li \hspace*{2 em}  A[j] = R[j]
+\li \hspace*{2 em}  j += 1
+\li \hspace*{1 em} k += 1
+\li if i $\leq$ n1
+\li \hspace*{1 em}while i $\leq$ n1
+\li \hspace*{2 em} A[k] = L[i] 
+\li \hspace*{2 em} k += 1
+\li \hspace*{2 em} i += 1
+\li else
+\li \hspace*{1 em}while j < n2
+\li \hspace*{2 em} A[k] = R[j]
+\li \hspace*{2 em} k += 1
+\li \hspace*{2 em} i += 1
+\end{codebox}
+
+\item
+\textbf{使用数学归纳法证明: 当n刚好是2的幂时,以下递归的解是T(n)$=$nlgn.}
+
+T(n)= 
+\left\{\begin{array}{ll}
+ 2 &$若$\ $n=2$ \\
+ $2T(n/2)+n$ &$若$\ $n = 2^k, k>1$
+\end{array}$\\
+答:\\
+n = 2时，\\
+T(n) = 2 成立。\\
+假定当n=2^k,\ k >1 $时成立，有：\\
+T(n) = 2^klg(2^k) = (2^k) * k
+
+
+\end{enumerate}
 
 \end{CJK*}
 \end{document}
