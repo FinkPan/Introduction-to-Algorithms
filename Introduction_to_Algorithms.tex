@@ -1,0 +1,19 @@
+\documentclass{article}
+
+%设置页面样式A4 8.3in x 11.7in
+\usepackage[body={7in,10in,nohead,nofoot}]{geometry}
+
+\usepackage{hyperref} %用于生成书签
+
+\usepackage{listings} %插入代码
+
+\usepackage{xeCJK} %支持中文
+
+\begin{document}
+\lstset{language=C++} //代码语言
+
+\input{chapter1/chapter1.tex}
+\input{chapter2/chapter2.tex}
+\input{chapter3/chapter3.tex}
+
+\end{document}

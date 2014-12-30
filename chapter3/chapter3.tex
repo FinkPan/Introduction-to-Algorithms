@@ -1,0 +1,41 @@
+\newpage
+\section{\LARGE 第三章\ 函数的增长}
+
+\subsection{渐近记号}
+\begin{enumerate} %//枚举题目
+\item
+\textbf{假设$f(n)$和$g(n)$都是渐近非负函数.使用$\Theta$记号的基本定义\\
+        证明$max(f(n),g(n))=\Theta(f(n)+g(n))$}\\
+答:\\
+因为$\Theta(f(n)+g(n))$为$f(n)+g(n)$的上下界,因此\\
+$0 \leq c1(f(n) + g(n)) \leq max(f(n) + g(n)) \leq c2 (f(n) + g(n))$\\
+对所有$n\geq n0$成立.领$c1=\frac{1}{2}, c2=2$上式成立.
+
+\item
+\textbf{证明: 对任意实常量$a$和$b$,其中$b>0$,有 $(n+a)^b = \Theta(n^b)$} \\ 
+答:\\
+ 因为$a,b$是常数,$(n+a)^b$最高项为 $(Cn)^b$,$C$为任意系数,$\Theta$由$n$最高次项决定,
+ 即有 $(n+a)^b = \Theta(n^b)$
+ 
+\item
+\textbf{解释为什么"算法A的运行时间至少是O($n^2$)"这一表述是无意义的.}\\
+答:\\
+O记号表明算法运行时间渐近上界. 应该是说:算法A的运行时间\textbf{至多}是O($n^2$)
+
+\item
+\textbf{$2^{n+1}=O(2^n)$成立么? $2^(2n)=O(2^n)$成立么;}\\
+答:\\
+
+
+\end{enumerate}
+
+%3.2标准记号与常用函数
+\subsection{标准记号与常用函数}
+\begin{enumerate} %//枚举题目
+\item
+\textbf{证明:惹f(n)和g(n)是单调递增的函数,则函数f(n)+g(n)和f(g(n))也是单调递增
+        的.此外,惹f(n)和g(n)是非负的,则f(n).g(n)是单调递增的.}\\
+答:\\
+
+\end{enumerate}
+
